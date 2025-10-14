@@ -8,7 +8,7 @@ export default class LinkedList {
     append(value) {
         const newNode = new Node(value);
 
-        if(this.head === null){
+        if (this.head === null) {
             this.head = newNode;
             return;
         }
@@ -25,11 +25,11 @@ export default class LinkedList {
         this.head = newNode;
     }
 
-    size(){
+    size() {
         let count = 0;
         let current = this.head;
 
-        while (current !==null) {
+        while (current !== null) {
             count++;
             current = current.nextNode;
         }
@@ -40,17 +40,17 @@ export default class LinkedList {
         return this.head;
     }
 
-    tail(){
-        if(this.head === null) return null;
+    tail() {
+        if (this.head === null) return null;
 
         let current = this.head;
-        while(current.nextNode !== null) {
+        while (current.nextNode !== null) {
             current = current.nextNode;
         }
         return current;
     }
-    at(index){
-        if(index < 0) return null;
+    at(index) {
+        if (index < 0) return null;
 
         let current = this.head;
         let count = 0;
@@ -61,5 +61,54 @@ export default class LinkedList {
             count++;
         }
         return null;
+    }
+    pop() {
+        if (!this.head) return;
+
+        if (!this.head.nextNode) {
+            this.head = null;
+            return;
+        }
+
+        let current = this.head;
+        while (current.nextNode.nextNode !== null) {
+            current = current.nextNode;
+        }
+        current.nextNode = null;
+    }
+    contains(value) {
+        let current = this.head;
+
+        while (current !== null) {
+            if (current.value === value) return true;
+            current = current.nextNode;
+        }
+
+        return false;
+    }
+    find(value) {
+        let current = this.head;
+        let index = 0;
+
+        while (current !== null) {
+            if (current.value === value) return index;
+            current = current.nextNode;
+            index++;
+        }
+
+        return null;
+    }
+
+    toString() {
+        let str = "";
+        let current = this.head;
+
+        while (current !== null) {
+            str += `( ${current.value} ) ->`;
+            current = current.nextNode;
+        }
+
+        str += "null";
+        return str;
     }
 }
