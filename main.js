@@ -27,3 +27,9 @@ console.log("Index of 'lion':", list.find("lion"));
 list.pop();
 console.log("After pop():", list.toString());
 console.log("New Tail:", list.tail().value);
+
+list.insertAt("ferret", 2);
+console.log("After insertAt(ferret,2):", list.toString());
+
+list.removeAt(2);
+console.log("After removing index 2:", list.toString());
